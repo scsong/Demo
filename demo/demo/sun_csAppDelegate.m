@@ -24,6 +24,8 @@
     [self.window makeKeyAndVisible];
     
     
+    //   test 基本NSString char
+    
     NSString * str = @"MOMO";
     char *c = "MOMO";
     
@@ -63,6 +65,31 @@
      
      
      */
+    
+    
+    //   test 基本数据类型
+    int i = 100;
+    //浮点型
+    float f = 1.1;
+    //双浮点型
+    double d = 2.2;
+    //短整型
+    short int si = 200;
+    //长整型
+    long long int ll = 123324123234123L;
+    
+    
+    //输出数据与内存中所占字节数
+    //整型
+    NSLog(@"i = %d size = %lu byte ",i, sizeof(i));
+    //浮点型
+    NSLog(@"f = %f size = %lu byte",f,sizeof(f));
+    //双浮点型
+    NSLog(@"d = %e size = %lu byte",d,sizeof(d));
+    //短整型
+    NSLog(@"si = %hi size = %lu byte",si,sizeof(si));
+    //长整型
+    NSLog(@"ll = %lli size = %lu byte",ll,sizeof(si));
     
     
     
