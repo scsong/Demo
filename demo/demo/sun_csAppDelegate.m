@@ -24,6 +24,7 @@
     [self.window makeKeyAndVisible];
     
     
+
     //   test 基本NSString char
     
     NSString * str = @"MOMO";
@@ -61,12 +62,15 @@
      
      如 const char* p =  123;
      p[0]='4'; 是错的， 字符串内容不允许改 
+     p ="456"; 是错误的， 指针不允许再指向其他地址
      
+     如 const char* p =  123;
+     p[0]='4'; 是错的， 字符串内容不允许改
      
      
      */
     
-    
+
     //   test 基本数据类型
     int i = 100;
     //浮点型
@@ -90,7 +94,6 @@
     NSLog(@"si = %hi size = %lu byte",si,sizeof(si));
     //长整型
     NSLog(@"ll = %lli size = %lu byte",ll,sizeof(si));
-    
     
     
     return YES;
