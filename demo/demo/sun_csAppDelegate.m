@@ -22,6 +22,50 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    NSString * str = @"MOMO";
+    char *c = "MOMO";
+    
+    //将NSString 转换为char *
+    const char *change = [str UTF8String];
+    
+    NSString *changeStr=[NSString stringWithCString:change encoding:NSUTF8StringEncoding];
+    
+    const int a =3;
+    
+    
+    //输出log
+    NSLog(@"str = %@ size = %lu", str,sizeof(str));
+    NSLog(@"c = %s size = %lu", c, sizeof(c));
+    NSLog(@"change = %s size = %lu", change, sizeof(change));
+    NSLog(@"change = %@ size = %lu", changeStr, sizeof(changeStr));
+    NSLog(@"a= %d",a);
+    
+    /*
+     
+     事实上这个概念谁都有,只是三种声明方式非常相似很容易记混。
+     Bjarne在他的The C++ Programming Language里面给出过一个助记的方法：
+     把一个声明从右向左读。
+     
+     char * const cp; ( * 读成 pointer to )
+     cp is a const pointer to char
+     
+     const char * p;
+     p is a pointer to const char;
+     
+     char * const p = "123";
+     p ="456"; 是错误的， 指针不允许再指向其他地址 是一个常量指针 指针地址不能修改
+     
+     如 const char* p =  123;
+     p[0]='4'; 是错的， 字符串内容不允许改 是一个指向常量字符的指针，字符不能修改
+     
+     
+     
+     */
+    
+    
+    
     return YES;
 }
 
