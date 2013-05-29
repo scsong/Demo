@@ -10,4 +10,6 @@
 
 @interface SingletonTest : NSObject
 
++ (SingletonTest *) shareInstance;
+
 @end
