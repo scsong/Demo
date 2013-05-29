@@ -10,4 +10,6 @@
 
 @interface ConstTest : NSObject
 
+- (void) testConst;
+
 @end
