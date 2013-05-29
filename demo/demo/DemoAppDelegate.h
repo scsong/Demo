@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <mach/mach.h>
+#include  <assert.h>
 
-@interface sun_csAppDelegate : UIResponder <UIApplicationDelegate>
+#include  <pthread.h>
+
+@interface DemoAppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSString *testStr;
+    BOOL pageStillLoading;
+    UILabel *label;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, retain) NSString *testStr;
+@property (nonatomic, retain) NSMutableArray *viewArray;
 
 @end

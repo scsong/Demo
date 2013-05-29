@@ -7,11 +7,17 @@
 //
 
 #import "DemoAppDelegate.h"
-
 #import "TestView.h"
+#import "StaticTest.h"
+#import "StaticTest2.h"
+#import "ConstTest.h"
+#import "SingletonTest.h"
+#import "OperateQueueTest.h"
+#import "NSArrayTest.h"
+#import "UIView+Drawing.h"
 
 @implementation DemoAppDelegate
-@synthesize string;
+@synthesize testStr;
 @synthesize viewArray;
 
 - (void)dealloc
@@ -20,15 +26,15 @@
     [super dealloc];
 }
 
-- (void) setString:(NSString *) _string
+- (void) setTestStr:(NSString *) _string
 {
     
     NSLog(@"%@",[_string description]);
     
-    [string release];
-     string=nil;
+    [testStr release];
+     testStr=nil;
     
-    string=[_string retain];
+    testStr=[_string retain];
     
     _string=[NSString stringWithFormat:@"2222222"];
     NSLog(@"%@",_string);
@@ -48,6 +54,118 @@ void report_memory(void) {
         NSLog(@"Error with task_info(): %s", mach_error_string(kerr));
     }
 }
+
+#pragma mark -
+#pragma mark 判定任意给定的一个数是否是2的n次方
+
+BOOL checkisPower(int n)
+{
+    
+    BOOL ispower=NO;
+    
+    int low=n%2;
+    
+    if (low==0) {
+        
+        if (n==0) {
+            
+            ispower=NO;
+            
+        }else
+        {
+            int tmplow=n/2;
+            
+            ispower=checkisPower(tmplow);
+        }
+    
+    }else
+    {
+    
+        if (n==1) {
+            ispower= YES;
+        }
+        
+    }
+    
+    return ispower;
+    
+}
+
+BOOL checkisPower2(int num)
+{
+    int i = 1;
+    while (true)
+    {
+        if (i > num)
+            return false;
+        if (i == num)
+            return true;
+        i = i * 2;
+    }
+}
+
+BOOL checkisPower3(int num)
+{
+    int low=num;
+    
+    if (low==0) {
+        return NO;
+    }
+    
+    while (true)
+    {
+       
+        if (low%2==0) {
+            low=low/2;
+        }else
+        {
+            if (low==1) {
+                return YES;
+            }
+            return NO;
+        }
+        
+        
+    }
+}
+
+
+#pragma mark -
+#pragma mark 判定一个数是不是另一个数的n次方
+
+
+BOOL isPower(int m, int n)
+
+{
+    if (n==0) {
+        return NO;
+    }
+    
+    if (n==1) {
+        
+        if (m==1)
+            return YES;
+        else
+            return NO;
+    }
+    
+    int low=m;
+    while (true) {
+        
+        if (low%n==0) {
+            low=low/n;
+        }else
+        {
+            if (low==1) 
+            return YES;
+        
+            return NO;
+        }
+    }
+    
+}
+
+
 
 #pragma mark -
 #pragma mark 二分法查找对应元素
@@ -173,6 +291,204 @@ void bubble_Asort(int *a, int n)
 
 
 
+#pragma mark -
+#pragma mark static 关键字
+
+- (void) staticTest
+{
+    StaticTest *test1=[[StaticTest alloc] init];
+    
+    [test1 testStatic];
+    
+    [test1 setStaticStr:@"test1"];
+    
+    [test1 release];
+    
+    
+    StaticTest *test2=[[StaticTest alloc] init];
+    
+    [test2 setStaticStr:@"test2"];
+    
+    [test2 release];
+    
+    
+    StaticTest *test3=[[StaticTest alloc] init];
+    
+    [test3 testStatic];
+    
+    [test3 testTmpStatic];
+    
+    [test3 testTmpStatic];
+    
+    [test3 release];
+    
+    
+    StaticTest *test4=[[StaticTest alloc] init];
+    
+    [test4 testTmpStatic];
+    
+    [test4 testTmpStatic];
+    
+    [test4 release];
+    
+    
+    
+    StaticTest2 *test5=[[StaticTest2 alloc] init];
+    
+    [test5 testStatic];
+    
+    [test5 testTmpStatic];
+    
+    [test5 testTmpStatic];
+    
+    [test5 release];
+    
+}
+
+
+#pragma mark -
+#pragma mark const 关键字
+
+- (void) constTest
+{
+    
+    ConstTest *test1=[[ConstTest alloc] init];
+    [test1 testConst];
+    [test1 release];
+
+}
+
+#pragma mark -
+#pragma mark singleton 测试
+
+- (void) singletonTest
+{
+    SingletonTest *test=[SingletonTest shareInstance];
+    
+    NSLog(@"1 retaincount :%d",[test retainCount]);
+    
+    SingletonTest *test2=[[SingletonTest alloc] init];
+    
+    NSLog(@"2 retaincount :%d",[test2 retainCount]);
+    
+    [test2 release];
+    
+    NSLog(@"3 retaincount :%d",[test2 retainCount]);
+    
+    NSLog(@"%@",test);
+    
+    
+    NSFileManager *manager=[NSFileManager defaultManager];
+    
+    
+    NSLog(@"4 retaincount :%d",[manager retainCount]);
+    
+    
+    NSFileManager *manager2=[[NSFileManager alloc] init];
+    
+    if (manager==manager2) {
+        NSLog(@"相同的manager");
+    }
+    
+
+}
+
+#pragma mark -
+#pragma mark NSTimer 测试
+
+- (void) testNSTimer
+{
+    
+    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+    NSRunLoop *mainloop=[NSRunLoop mainRunLoop];
+    if (runloop==mainloop) {
+        NSLog(@"当前loop为mainloop");
+    }else
+    {
+        // execept mainRunLoop other runloop should you start mainrunloop autostart
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
+    }
+    
+    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(myTimerAction:) userInfo:nil repeats:NO];
+    [runloop addTimer:timer forMode:NSRunLoopCommonModes];
+    [runloop addTimer:timer forMode:UITrackingRunLoopMode];
+
+}
+
+
+- (void) myTimerAction:(id) sender
+{
+    NSLog(@"begin********************************");
+    for (int i=0;i<10000; i++) {
+        NSLog(@"-------------------------------%d",i);
+    }
+    NSLog(@"end********************************");
+
+}
+
+#pragma mark -
+#pragma mark View Frame Bounds test
+- (void) testViewFrameAndBounds
+{
+
+    UIView *topView=[[UIView alloc] initWithFrame:CGRectMake(100, 0, 120, 100)];
+    [topView setBackgroundColor:[UIColor redColor]];
+    [self.window addSubview:topView];
+    
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(100, 100, 120, 240)];
+    [self.window addSubview:view];
+    view.backgroundColor=[UIColor magentaColor];
+    NSLog(@"view center x=======%f",view.center.x);
+    NSLog(@"view center y=======%f",view.center.y);
+    view.bounds=CGRectMake(-50, 0, 80, 200);
+    //[view setClipsToBounds:YES];
+    //view.frame=CGRectMake(100, 100, 120, 240);
+    NSLog(@"bounds width=======%f",view.bounds.size.width);
+    NSLog(@"bounds height======%f",view.bounds.size.height);
+    NSLog(@"bounds origin x=======%f",view.bounds.origin.x);
+    NSLog(@"bounds origin y=======%f",view.bounds.origin.y);
+    NSLog(@"view center x=======%f",view.center.x);
+    NSLog(@"view center y=======%f",view.center.y);
+    
+    NSLog(@"view width=======%f",view.frame.size.width);
+    NSLog(@"view height======%f",view.frame.size.height);
+    NSLog(@"view origin x=======%f",view.frame.origin.x);
+    NSLog(@"view origin y=======%f",view.frame.origin.y);
+    
+    [view setFrame:CGRectMake(100, 100, 120, 240)];
+    
+    
+    
+    NSLog(@"bounds width=======%f",view.bounds.size.width);
+    NSLog(@"bounds height======%f",view.bounds.size.height);
+    NSLog(@"bounds origin x=======%f",view.bounds.origin.x);
+    NSLog(@"bounds origin y=======%f",view.bounds.origin.y);
+    
+    
+    view.bounds=CGRectMake(0, 100, 80, 200);
+    
+    UIView *contentView=[[UIView alloc] initWithFrame:CGRectMake(0, 10, 80, 80)];
+    contentView.backgroundColor=[UIColor blueColor];
+    [view addSubview:contentView];
+    [contentView release];
+    contentView=nil;
+    
+    
+    contentView=[[UIView alloc] initWithFrame:CGRectMake(138, 100, 80, 80)];
+    contentView.backgroundColor=[UIColor blueColor];
+    [view addSubview:contentView];
+    [contentView release];
+    contentView=nil;
+    
+    
+    
+    [UIView animateWithDuration:2.0 animations:^{
+        //view.bounds=CGRectMake(0, 0, 300, 240);
+    }];
+    
+    
+    [view release];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -182,6 +498,8 @@ void bubble_Asort(int *a, int n)
     [self.window makeKeyAndVisible];
     
     self.viewArray=[NSMutableArray array];
+    
+    
     
     /*
      //冒泡排序  
@@ -208,6 +526,13 @@ void bubble_Asort(int *a, int n)
     */
     
     
+    // test ispower
+    int number=12;
+    BOOL ispower=isPower(number,3);
+    if (ispower) {
+        
+    }
+    
     int pages=10;
     
     for (int num = 0; num < pages; num++) {
@@ -216,33 +541,33 @@ void bubble_Asort(int *a, int n)
         
         TestView * zoomView = [[TestView alloc] initWithFrame:CGRectMake(0, num*20, 10, 10)];
         zoomView.backgroundColor = [UIColor redColor];
-        //[self.window addSubview:zoomView];
+        [self.window addSubview:zoomView];
         
         //[self.viewArray addObject:zoomView];
         
         
         
         NSLog(@"1:%d",[zoomView retainCount]);
-        report_memory();
+        //report_memory();
         
         [zoomView release];
         
         NSLog(@"2:%d",[zoomView retainCount]);
-        report_memory();
+        //report_memory();
         
         
         zoomView = nil;
         
         NSLog(@"3:%d",[zoomView retainCount]);
-        report_memory();
+        //report_memory();
         
         
     }
 
     
 
-    //   test 基本NSString char
-    
+    //  test 基本NSString char
+    /*
     NSString * str = @"MOMO";
     char *c = "MOMO";
     
@@ -259,34 +584,11 @@ void bubble_Asort(int *a, int n)
     NSLog(@"change = %s size = %lu", change, sizeof(change));
     NSLog(@"change = %@ size = %lu", changeStr, sizeof(changeStr));
     NSLog(@"a= %d",a);
-    
-    /*
-     
-     事实上这个概念谁都有,只是三种声明方式非常相似很容易记混。
-     Bjarne在他的The C++ Programming Language里面给出过一个助记的方法：
-     把一个声明从右向左读。
-     
-     char * const cp; ( * 读成 pointer to )
-     cp is a const pointer to char
-     
-     const char * p;
-     p is a pointer to const char;
-     
-     char * const p = "123";
-     p ="456"; 是错误的， 指针不允许再指向其他地址 
-     
-     如 const char* p =  123;
-     p[0]='4'; 是错的， 字符串内容不允许改 
-     p ="456"; 是错误的， 指针不允许再指向其他地址
-     
-     如 const char* p =  123;
-     p[0]='4'; 是错的， 字符串内容不允许改
-     
-     
-     */
+    */
     
 
     //   test 基本数据类型
+    /*
     int i = 100;
     //浮点型
     float f = 1.1;
@@ -309,23 +611,10 @@ void bubble_Asort(int *a, int n)
     NSLog(@"si = %hi size = %lu byte",si,sizeof(si));
     //长整型
     NSLog(@"ll = %lli size = %lu byte",ll,sizeof(si));
+    */
     
     
-    
-    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
-    NSRunLoop *mainloop=[NSRunLoop mainRunLoop];
-    if (runloop==mainloop) {
-        NSLog(@"当前loop为mainloop");
-    }
-    
-    //NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(myTimerAction:) userInfo:nil repeats:YES];
-    //NSTimer *timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(myTimerAction:) userInfo:nil repeats:YES];
-    //[runloop addTimer:timer forMode:NSRunLoopCommonModes];
-    //[runloop addTimer:timer forMode:UITrackingRunLoopMode];
-    
-    //[self performSelectorOnMainThread:@selector(calculate:) withObject:nil waitUntilDone:NO];
-    //NSLog(@"1111");
-    
+    // NSTimer test
     
     
     label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -335,13 +624,75 @@ void bubble_Asort(int *a, int n)
     
     
     pageStillLoading = YES;
-    // init a new Thread and start it
+    // test new Thread
+    
+    /*
     [NSThread detachNewThreadSelector:@selector(loadPageInBackground:)toTarget:self withObject:nil];
     
 //    while (pageStillLoading) {
 //        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 //    }
     NSLog(@"完成");
+     */
+    
+    
+    
+    
+    // static test
+    /*
+    StaticTest *test=[[StaticTest alloc] init];
+    
+    [test testTmpStatic];
+    
+    [test testTmpStatic];
+    
+    
+    [test testStaticFunction];
+    
+    [test release];
+    
+    
+    [self staticTest];
+    */
+    
+    
+    // const test
+    
+    /*
+    [self constTest];
+     */
+    
+    
+    // singleton test
+    /*
+    [self singletonTest];
+    
+    SingletonTest *singletonTest=[SingletonTest shareInstance];
+    NSLog(@"%@",singletonTest);
+     */
+    
+    
+    // OperateQueue test
+    /*
+    OperateQueueTest *queueTest=[[OperateQueueTest alloc] init];
+    //[queueTest downloadImage];
+    //[queueTest performSelectorInBackground:@selector(downloadImage) withObject:nil];
+    
+    [NSThread detachNewThreadSelector:@selector(downloadImage) toTarget:queueTest withObject:nil];
+    */
+    
+    
+    // array test
+    /*
+    NSArrayTest *arrTest=[[NSArrayTest alloc] init];
+    [arrTest filteredArray];
+    [arrTest release];
+   */
+    
+
+    
+    // view frame bounds test
+    //[self testViewFrameAndBounds];
     
     return YES;
 }
@@ -372,12 +723,18 @@ void bubble_Asort(int *a, int n)
  */
 - (void) loadPageInBackground:(id) sener
 {
-    for (int i=0; i<10; i++) {
+    
+    //[self testNSTimer];
+    
+    for (int i=0; i<1000; i++) {
+        
         NSLog(@"%d",i);
         // Should update UI in mainThread
         [self performSelectorOnMainThread:@selector(updateUI:) withObject:[NSString stringWithFormat:@"%d",i] waitUntilDone:NO];
     }
+    
     pageStillLoading=NO;
+     
 }
 
 
