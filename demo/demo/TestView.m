@@ -7,6 +7,7 @@
 //
 
 #import "TestView.h"
+#import "UIView+Drawing.h"
 
 @implementation TestView
 
@@ -15,7 +16,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+    
+        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 12)];
+        [self addSubview:imageView];
+        [imageView release];
+    
+    
     }
+    
     return self;
 }
 
@@ -27,5 +35,11 @@
     // Drawing code
 }
 */
+
+
+- (void) dealloc
+{
+    [super dealloc];
+}
 
 @end
