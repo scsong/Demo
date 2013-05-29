@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NASrrayTest : NSObject
+@interface NSArrayTest : NSObject
+
+
+- (void) filteredObject;
+
+/**
+ *	@brief	filter array
+ */
+- (void) filteredArray;
+
+/**
+ *	@brief	sort array items
+ */
+- (void) sortArray;
 
 @end
