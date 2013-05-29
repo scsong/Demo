@@ -8,6 +8,12 @@
 
 #import "UIView+Drawing.h"
 
-@implementation UIView (Drawing)
+@implementation UIImageView (Drawing)
+
+- (void) drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    NSLog(@"aaaaaaaa");
+}
 
 @end
