@@ -10,4 +10,11 @@
 
 @interface StaticTest2 : NSObject
 
+
+- (void) setStaticStr:(NSString *) _string;
+
+- (void) testStatic;
+
+- (void) testTmpStatic;
+
 @end
