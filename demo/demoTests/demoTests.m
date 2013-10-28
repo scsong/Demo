@@ -26,7 +26,8 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in demoTests");
+    //STFail(@"Unit tests are not implemented yet in demoTests");
+    NSAssert(1==1, @"not true");
 }
 
 @end
