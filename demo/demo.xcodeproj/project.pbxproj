@@ -240,6 +240,11 @@
 				CLASSPREFIX = "sun cs";
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = com.suncs;
+				TargetAttributes = {
+					84B6F32E17267D2500473E8F = {
+						DevelopmentTeam = 2DE8QTFYGR;
+					};
+				};
 			};
 			buildConfigurationList = 84B6F32917267D2500473E8F /* Build configuration list for PBXProject "demo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -361,8 +366,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kx的Mac mini (QZUK42G688)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kx的Mac mini (QZUK42G688)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cheney Chen (84R2X97Q4F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cheney Chen (84R2X97Q4F)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -400,8 +405,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "ACFFA4A4-AA9C-4052-A613-0101D643B21C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACFFA4A4-AA9C-4052-A613-0101D643B21C";
+				PROVISIONING_PROFILE = "925B273C-11D9-4148-A430-CFE64884A18E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "925B273C-11D9-4148-A430-CFE64884A18E";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -411,8 +416,8 @@
 		84B6F36317267D2600473E8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: kx的Mac mini (QZUK42G688)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kx的Mac mini (QZUK42G688)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cheney Chen (84R2X97Q4F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
 				INFOPLIST_FILE = "demo/demo-Info.plist";
@@ -426,14 +431,14 @@
 		84B6F36417267D2600473E8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing KuXun Interactive Technology Company Limited (2DE8QTFYGR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing KuXun Interactive Technology Company Limited (2DE8QTFYGR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
 				INFOPLIST_FILE = "demo/demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ACFFA4A4-AA9C-4052-A613-0101D643B21C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACFFA4A4-AA9C-4052-A613-0101D643B21C";
+				PROVISIONING_PROFILE = "925B273C-11D9-4148-A430-CFE64884A18E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "925B273C-11D9-4148-A430-CFE64884A18E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
