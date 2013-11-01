@@ -499,8 +499,6 @@ void bubble_Asort(int *a, int n)
     
     self.viewArray=[NSMutableArray array];
     
-    NSLog(@"test demo bot");
-    
     /*
      //冒泡排序  
      
