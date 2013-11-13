@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840AC33418338C0100EC6F22 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 840AC33018338C0100EC6F22 /* CHANGELOG.md */; };
+		840AC33518338C0100EC6F22 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 840AC33218338C0100EC6F22 /* JSONKit.m */; };
+		840AC33618338C0100EC6F22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 840AC33318338C0100EC6F22 /* README.md */; };
 		8458C7CA173B3AC40045332A /* NSArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458C7C9173B3AC40045332A /* NSArrayTest.m */; };
 		845FAB6E17388E2F00797305 /* StaticTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FAB6D17388E2F00797305 /* StaticTest.m */; };
 		845FAB7117388ED200797305 /* DemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FAB7017388ED200797305 /* DemoAppDelegate.m */; };
@@ -42,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840AC33018338C0100EC6F22 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		840AC33118338C0100EC6F22 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		840AC33218338C0100EC6F22 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		840AC33318338C0100EC6F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8458C7C8173B3AC40045332A /* NSArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayTest.h; sourceTree = "<group>"; };
 		8458C7C9173B3AC40045332A /* NSArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTest.m; sourceTree = "<group>"; };
 		845FAB6C17388E2F00797305 /* StaticTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTest.h; sourceTree = "<group>"; };
@@ -103,6 +110,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840AC32E18338C0100EC6F22 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				840AC32F18338C0100EC6F22 /* JSONKit */,
+			);
+			name = Lib;
+			path = ../../Lib;
+			sourceTree = "<group>";
+		};
+		840AC32F18338C0100EC6F22 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				840AC33018338C0100EC6F22 /* CHANGELOG.md */,
+				840AC33118338C0100EC6F22 /* JSONKit.h */,
+				840AC33218338C0100EC6F22 /* JSONKit.m */,
+				840AC33318338C0100EC6F22 /* README.md */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 		84B6F32417267D2500473E8F = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +163,7 @@
 		84B6F33917267D2500473E8F /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				840AC32E18338C0100EC6F22 /* Lib */,
 				84B6F34217267D2500473E8F /* DemoAppDelegate.h */,
 				845FAB7017388ED200797305 /* DemoAppDelegate.m */,
 				84B6F33A17267D2500473E8F /* Supporting Files */,
@@ -269,7 +297,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840AC33618338C0100EC6F22 /* README.md in Resources */,
 				84B6F33E17267D2500473E8F /* InfoPlist.strings in Resources */,
+				840AC33418338C0100EC6F22 /* CHANGELOG.md in Resources */,
 				84B6F34617267D2500473E8F /* Default.png in Resources */,
 				84B6F34817267D2500473E8F /* Default@2x.png in Resources */,
 				84B6F34A17267D2500473E8F /* Default-568h@2x.png in Resources */,
@@ -317,6 +347,7 @@
 				845FAB811738D3F300797305 /* OperateQueueTest.m in Sources */,
 				8458C7CA173B3AC40045332A /* NSArrayTest.m in Sources */,
 				8495E823174DDD5F000B0248 /* UIView+Drawing.m in Sources */,
+				840AC33518338C0100EC6F22 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
